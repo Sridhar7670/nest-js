@@ -40,10 +40,13 @@ export class MessageRepository {
         if (!messages[id]) {
             throw new Error("Message not found");
         }
-        messages[id] = { id, ...message };
+        messages[id] = { id:id, Content: message };
+        console.log(messages[id]);
         await writeFile("messages.json", JSON.stringify(messages, null, 2));
-        return `${messages[id]}: updated successfully`;
+        return `${id}: updated successfully`;
+       
     }
+
     async delete(id:string){
         // Simulate a database call
         const messages = await this.findAll();

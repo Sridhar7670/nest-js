@@ -1,5 +1,5 @@
-import { Controller ,Get,Post,Body,Param, Delete} from '@nestjs/common';
-import { createDtoMessage,createMessageDtoNumber, PostDto } from './DTO/create-message.dto';
+import { Controller ,Get,Post,Body,Param, Delete, Put} from '@nestjs/common';
+import { createDtoMessage,createMessageDtoNumber, PostDto, UpdateMessageDTO } from './DTO/create-message.dto';
 import { MessageServices } from './messages-services';
 
 
@@ -35,6 +35,13 @@ export class MessagesController {
   createFullPost(@Body() body: PostDto) {
     console.log('Received a post with full validation:', body);
     return 'Successfully created a post with complex validation!';
+  }
+
+  @Put(':id')
+  UpdateMessage(@Param("id") id: string,@Body() body:UpdateMessageDTO){
+    console.log(id, body.Content);
+    return this.messageService.update(id, body.Content);
+
   }
 
     @Get(':id')

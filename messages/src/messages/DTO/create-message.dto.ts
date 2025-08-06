@@ -12,6 +12,12 @@ export class createDtoMessage {
     id:number; //case sensitive
    
 }
+export class UpdateMessageDTO{
+
+    @IsString()
+    @IsNotEmpty()
+    Content:string;  //case senistive   
+}
 export class createMessageDtoNumber {
     @IsInt()
     @IsNotEmpty()
