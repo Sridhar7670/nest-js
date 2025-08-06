@@ -1,20 +1,27 @@
-import { Controller ,Get,Post,Body,Param} from '@nestjs/common';
+import { Controller ,Get,Post,Body,Param, Delete} from '@nestjs/common';
 import { createDtoMessage,createMessageDtoNumber, PostDto } from './DTO/create-message.dto';
+import { MessageServices } from './messages-services';
 
 
 @Controller('messages')
 export class MessagesController {
+    messageService:MessageServices
+    // The constructor initializes the MessageServices instance 
+    constructor(){
+        this.messageService= new MessageServices();
+    }
     @Get()
     getMessages() {
-        return 'This action returns all messages';
+       return this.messageService.findAll();
     }
 
     @Post()
     createMessageWithDTO(@Body() body: createDtoMessage) {
-        console.log(body);
+        console.log(body.id,body.Content);
         // Here you would typically save the message to a database
         // For now, we just return a success message
-        return 'a new message has been created on such action ';
+        // return 'a new message has been created on such action ';
+        return this.messageService.create(body)
     }
     
     @Post('create')
@@ -33,6 +40,14 @@ export class MessagesController {
     @Get(':id')
     getMessageById(@Param('id') id:string) {
         console.log(id)
-        return 'This action returns a message by ID';
+        // return 'This action returns a message by ID';
+        return this.messageService.findOne(id);
+    }
+
+    @Delete(":id")
+    DeleteMessageById(@Param('id') id:string) {
+        console.log(id)
+        // return 'This action deletes a message by ID';
+        return this.messageService.delete(id);
     }
 }

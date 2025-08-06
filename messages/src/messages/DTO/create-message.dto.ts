@@ -4,8 +4,12 @@ import {Contains,Length,IsEmail, IsFQDN,Min,Max,} from 'class-validator';
 export class createDtoMessage {
     //ADD VALIDATION RULES
     @IsString()
+    @IsNotEmpty()
     Content:string;  //case senistive 
 
+    @IsInt()
+    @IsNotEmpty()
+    id:number; //case sensitive
    
 }
 export class createMessageDtoNumber {
