@@ -5,11 +5,13 @@ import { MessageServices } from './messages-services';
 
 @Controller('messages')
 export class MessagesController {
-    messageService:MessageServices
-    // The constructor initializes the MessageServices instance 
-    constructor(){
-        this.messageService= new MessageServices();
-    }
+    // messageService:MessageServices
+    // // The constructor initializes the MessageServices instance 
+    // constructor(){
+    //     this.messageService= new MessageServices();
+    // }
+
+    constructor(public messageService: MessageServices) {}
     @Get()
     getMessages() {
        return this.messageService.findAll();
