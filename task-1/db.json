@@ -1,0 +1,23 @@
+{
+  "users": {
+    "1": {
+      "id": 1,
+      "email": "sridhar@test.com",
+      "password": "$2b$10$863eQRsnZ7pRa9d.D2to3eLKVEyc5HbJ/7VkY7eHkE.HGRzEr/WtS"
+    }
+  },
+  "reports": {
+    "1": {
+      "id": "1",
+      "make": "Toyota",
+      "model": "Camry",
+      "year": 2022,
+      "mileage": 15000,
+      "lng": 77.59,
+      "lat": 12.97,
+      "price": 25000,
+      "approved": true,
+      "userId": 1
+    }
+  }
+}
