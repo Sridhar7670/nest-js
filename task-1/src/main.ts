@@ -5,8 +5,14 @@ import { AppModule } from './app.module';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   // Enable global validation pipe to automatically validate incoming data against DTOs
+
+  app.enableCors({
+    origin: 'http://localhost:3001', 
+  });
+  
   app.useGlobalPipes(new ValidationPipe({
     whitelist: true, // Strips properties that do not have any decorators
+    forbidNonWhitelisted: true,  // throws error on unknown props
     transform: true, // Automatically transform payloads to be objects typed according to their DTO classes
   }));
   await app.listen(3000);

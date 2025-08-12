@@ -28,4 +28,21 @@ export class ReportsController {
   approveReport(@Param('id') id: string, @Body() body: ApproveReportDto) {
     return this.reportsService.changeApproval(id, body.approved);
   }
+
+  // @Get('/all')
+  // @UseGuards(JwtAuthGuard) // Protect this endpoint so only logged-in users can access it
+  // findAllReports() {
+  //   return this.reportsService.findAll(); 
+  // }
+
+  @Get('/all')
+  @UseGuards(JwtAuthGuard)
+  findAllReports(@Request() req) {
+    // req.user is populated by the JwtStrategy after validating the token.
+    // It contains the payload: { userId: number, email: string }
+    const userId = req.user.userId;
+
+    // Pass the logged-in user's ID to the service method
+    return this.reportsService.findAll(userId);
+  }
 }

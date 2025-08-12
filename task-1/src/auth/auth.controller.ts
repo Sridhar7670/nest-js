@@ -12,11 +12,11 @@ export class AuthController {
 
   @Post('/signup')
   signup(@Body() body: AuthDto) {
-    return this.authService.signup(body.email, body.password);
+    return this.authService.signup(body.email, body.password ,body.username );
   }
 
-  @Post('/signin')
+  @Post('/login')
   signin(@Body() body: AuthDto) {
-    return this.authService.signin(body.email, body.password);
+    return this.authService.signin(body.email, body.password,body.username);
   }
 }

@@ -36,6 +36,8 @@ export class ReportsService {
 
   getEstimate(estimateDto: GetEstimateDto) {
     const reports = this.db.get('reports');
+  console.log(reports);
+
     // This is a simplified estimation logic for demonstration
     const filteredReports:any[] = Object.values(reports).filter((report: any) =>
         report.make === estimateDto.make &&
@@ -45,4 +47,22 @@ export class ReportsService {
     const avgPrice = filteredReports.reduce((sum, report: any) => sum + report.price, 0) / (filteredReports.length || 1);
     return { estimatedPrice: avgPrice.toFixed(2) };
   }
+
+//   findAll() {
+//   // This method simply gets the 'reports' table from our DbService
+//   console.log(this.db.get('reports'));
+//   return this.db.get('reports');
+// }
+
+
+findAll(userId: number) {
+  const reports = this.db.get('reports');
+  
+  // Filter the reports to only include ones created by the specified user
+  const userReports = Object.values(reports).filter(
+    (report: any) => report.userId === userId,
+  );
+
+  return userReports;
+}
 }
