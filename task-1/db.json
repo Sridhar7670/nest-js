@@ -41,6 +41,29 @@
       "email": "murthy@test.com",
       "password": "$2b$10$nP.fXeVOq/FWFhMRyeo9mOv5V8XYjPcbHDUepgiPbJzraSgjCE1JK",
       "username": "murthy"
+    },
+    "9": {
+      "id": 9,
+      "email": "anand@test.com",
+      "password": "$2b$10$aEI6iu5FLexpfCU66zbKVett4nOYx.CY0gtTaqlZXzkudyz3kV3m.",
+      "username": "anand"
+    },
+    "10": {
+      "id": 10,
+      "email": "anand1@test.com",
+      "password": "$2b$10$bZR8zqFeglkwOK8VqV64I.0aKfSLoX3Z1n99sPYTULsDcTpKAR90S",
+      "username": "anana1"
+    },
+    "11": {
+      "id": 11,
+      "email": "rajesh@gmail.com",
+      "password": "$2b$10$Glv30TdL0ezhixWd18X4iO5DRU3JM6GDnBAlaF8iB/uAewnqAJ0gK",
+      "username": "rajesh"
+    },
+    "12": {
+      "id": 12,
+      "email": "rajesh1@gmail.com",
+      "password": "$2b$10$8febbF2HIpbHm1FxaLlCo.iqzxdMNOfoB8FT4.5yEPrhEaRbi5EWa"
     }
   },
   "reports": {
@@ -91,6 +114,18 @@
       "price": 0,
       "approved": true,
       "userId": 3
+    },
+    "5": {
+      "id": "5",
+      "make": "",
+      "model": "",
+      "year": 2020,
+      "mileage": 0,
+      "lng": 0,
+      "lat": 0,
+      "price": 0,
+      "approved": false,
+      "userId": 10
     }
   }
 }
