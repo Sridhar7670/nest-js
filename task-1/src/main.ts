@@ -7,7 +7,7 @@ async function bootstrap() {
   // Enable global validation pipe to automatically validate incoming data against DTOs
 
   app.enableCors({
-    origin: ['http://your-frontend-domain.com','http://localhost:3000'], // The origin of your deployed frontend
+    origin: ['https://frontendapp-5ou7.onrender.com/','http://localhost:3000'], // The origin of your deployed frontend
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,
   });
