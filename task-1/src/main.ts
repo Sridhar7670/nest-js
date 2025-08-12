@@ -15,7 +15,7 @@ async function bootstrap() {
     forbidNonWhitelisted: true,  // throws error on unknown props
     transform: true, // Automatically transform payloads to be objects typed according to their DTO classes
   }));
-  await app.listen(3000);
+  await app.listen(process.env.PORT || 3000);
   console.log(`Application is running on: http://localhost:3000`);
 }
 bootstrap();
