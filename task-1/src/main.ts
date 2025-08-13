@@ -7,7 +7,7 @@ async function bootstrap() {
 
   // Enable CORS with specific headers
   app.enableCors({
-    origin: ['https://frontendapp-5ou7.onrender.com', 'http://localhost:3001'],
+    origin: ['https://frontendapp-5ou7.onrender.com', 'http://localhost:3001','http://localhost:3000'],
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
     allowedHeaders: 'Content-Type, Accept, Authorization', // Allow Authorization header
     credentials: true,
