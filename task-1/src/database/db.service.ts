@@ -40,11 +40,18 @@ export class DbService implements OnModuleInit, OnModuleDestroy {
   private pool: Pool;
 
   async onModuleInit() {
-    this.pool = new Pool({
-      // Paste your Supabase connection string here
-      // IMPORTANT: In a real project, store this in a .env file for security!
-      connectionString: 'postgresql://postgres:Fetch@123@db.dcdkfphsdjsneemlyngm.supabase.co:5432/postgres',
+    // this.pool = new Pool({
+    //   // Paste your Supabase connection string here
+    //   // IMPORTANT: In a real project, store this in a .env file for security!
+    //   connectionString: 'postgresql://postgres:Fetch@123@db.dcdkfphsdjsneemlyngm.supabase.co:5432/postgres',
       
+    // });
+    this.pool = new Pool({
+      user: 'postgres',
+      host: 'db.dcdkfphsdjsneemlyngm.supabase.co',
+      database: 'postgres',
+      password: 'Fetch@123', 
+      port: 5432,
     });
 
     try {
