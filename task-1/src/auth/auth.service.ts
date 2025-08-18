@@ -93,7 +93,7 @@ import {
   Injectable,
   BadRequestException,
   NotFoundException,
-  UnauthorizedException,
+  UnauthorizedException,InternalServerErrorException
 } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { DbService } from '../database/db.service';
@@ -107,28 +107,34 @@ export class AuthService {
     private jwtService: JwtService,
   ) {}
 
-  async signup(email: string, password: string, username: string) {
-    // Check if email already exists
+async signup(email: string, password: string, username: string) {
+  try {
     const { rows: existingUsers } = await this.db.query(
-     'SELECT id FROM users WHERE email = $1 OR username = $2',
+      'SELECT id FROM users WHERE email = $1',
       [email],
     );
 
     if (existingUsers.length > 0) {
-      throw new BadRequestException('Email is already in use');
+      // return "Email or username is already in use"
+      throw new BadRequestException('Email or username is already in use');
     }
 
-    // Hash password and insert user
     const hashedPassword = await bcrypt.hash(password, 10);
 
     const { rows } = await this.db.query(
       'INSERT INTO users (email, password, username) VALUES ($1, $2, $3) RETURNING id, email, username',
       [email, hashedPassword, username],
     );
-
+    console.log("signup called")
     const user = rows[0];
     return this.generateToken(user);
+
+  } catch (error) {
+    console.error('Signup error:', error); 
+    throw new InternalServerErrorException('Something went wrong during signup');
   }
+}
+
 
   async login(email: string, password: string) {
     // Fetch user by email
@@ -139,15 +145,17 @@ export class AuthService {
 
     const user = rows[0];
     if (!user) {
+      // return "user with this email not found"
       throw new NotFoundException('User with this email not found');
     }
 
     // Validate password
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
+      // return "Invalid Credentials"
       throw new UnauthorizedException('Invalid credentials');
     }
-
+    console.log("login called")
     return this.generateToken(user);
   }
 
