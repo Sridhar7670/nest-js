@@ -50,7 +50,7 @@ export class DbService implements OnModuleInit, OnModuleDestroy {
       user: 'postgres',
       host: 'db.dcdkfphsdjsneemlyngm.supabase.co',
       database: 'postgres',
-      password: 'Fetch@123', 
+      password: 'Fetch@123456AQWE', 
       port: 5432,
     });
 
