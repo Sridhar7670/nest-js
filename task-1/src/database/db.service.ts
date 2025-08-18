@@ -52,6 +52,9 @@ export class DbService implements OnModuleInit, OnModuleDestroy {
       database: 'postgres',
       password: 'Fetch@123456AQWE', 
       port: 5432,
+      ssl: {
+        rejectUnauthorized: false 
+      }
     });
 
     try {
