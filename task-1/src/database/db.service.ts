@@ -44,6 +44,7 @@ export class DbService implements OnModuleInit, OnModuleDestroy {
       // Paste your Supabase connection string here
       // IMPORTANT: In a real project, store this in a .env file for security!
       connectionString: 'postgresql://postgres:Fetch@123@db.dcdkfphsdjsneemlyngm.supabase.co:5432/postgres',
+      
     });
 
     try {
