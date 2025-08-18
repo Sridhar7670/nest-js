@@ -40,29 +40,29 @@ export class DbService implements OnModuleInit, OnModuleDestroy {
   private pool: Pool;
 
   async onModuleInit() {
-    // this.pool = new Pool({
-    //   // Paste your Supabase connection string here
-    //   // IMPORTANT: In a real project, store this in a .env file for security!
-    //   connectionString: 'postgresql://postgres:Fetch@123@db.dcdkfphsdjsneemlyngm.supabase.co:5432/postgres',
-      
-    // });
     this.pool = new Pool({
-      user: 'postgres',
-      host: 'db.dcdkfphsdjsneemlyngm.supabase.co',
-      database: 'postgres',
-      password: 'Fetch@123456AQWE', 
-      port: 5432,
-      ssl: {
-        rejectUnauthorized: false 
-      }
+      // Paste your Supabase connection string here
+      // IMPORTANT: In a real project, store this in a .env file for security!
+      connectionString: 'postgresql://postgres.dcdkfphsdjsneemlyngm:Fetch@123456AQWE@aws-1-ap-south-1.pooler.supabase.com:5432/postgres',
+      
     });
+    // this.pool = new Pool({
+    //   user: 'postgres',
+    //   host: 'db.dcdkfphsdjsneemlyngm.supabase.co',
+    //   database: 'postgres',
+    //   password: 'Fetch@123456AQWE', 
+    //   port: 5432,
+    //   ssl: {
+    //     rejectUnauthorized: false 
+    //   }
+    // });
 
     try {
       // Test the connection
       await this.pool.query('SELECT NOW()');
       console.log(' Successfully connected to Supabase PostgreSQL database.');
     } catch (error) {
-      console.error(' Failed to connect to Supabase PostgreSQL database:', error);
+      console.error(' Failed to connect to Supabase PostgreSQL database:', error.message);
     }
   }
 
