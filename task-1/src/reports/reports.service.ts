@@ -110,7 +110,7 @@ export class ReportsService {
     );
     return rows;
   }
-
+ 
   async getEstimate(estimateDto: GetEstimateDto) {
     const { make, model, year, mileage, lng, lat } = estimateDto;
     // Use a more complex SELECT query for the estimation logic

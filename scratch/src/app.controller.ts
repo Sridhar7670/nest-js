@@ -3,7 +3,7 @@ import { Controller,Get } from "@nestjs/common";
 @Controller("/")
 class AppController {
     @Get("/hi")
-    getRouteRoute(){
+    getRouteRoute(){ 
         return "Hello, Sridhar!";
     }
     @Get("/bye")

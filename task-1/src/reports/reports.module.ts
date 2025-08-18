@@ -2,7 +2,7 @@
 // src/reports/reports.module.ts
 // Module for handling all report-related components.
 
-import { Module } from '@nestjs/common';
+import { Module } from '@nestjs/common';   
 import { ReportsController } from './reports.controller';
 import { ReportsService } from './reports.service';
 
@@ -10,4 +10,4 @@ import { ReportsService } from './reports.service';
   controllers: [ReportsController],
   providers: [ReportsService],
 })
-export class ReportsModule {}
+export class ReportsModule {} 
