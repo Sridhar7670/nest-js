@@ -110,7 +110,7 @@ export class AuthService {
   async signup(email: string, password: string, username: string) {
     // Check if email already exists
     const { rows: existingUsers } = await this.db.query(
-      'SELECT * FROM users WHERE email = $1',
+     'SELECT id FROM users WHERE email = $1 OR username = $2',
       [email],
     );
 
