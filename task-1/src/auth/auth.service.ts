@@ -99,6 +99,7 @@ import { JwtService } from '@nestjs/jwt';
 import { DbService } from '../database/db.service';
 import * as bcrypt from 'bcrypt';
 import { User } from './interfaces/user.interface';
+import { error } from 'console';
 
 @Injectable()
 export class AuthService {
@@ -153,6 +154,7 @@ async signup(email: string, password: string, username: string) {
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
       // return "Invalid Credentials"
+      console.log(error)
       throw new UnauthorizedException('Invalid credentials');
     }
     console.log("login called")
