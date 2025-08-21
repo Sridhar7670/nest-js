@@ -1,10 +1,14 @@
-import { Body,Controller ,Delete,Get,Param,Patch,Post, Query} from "@nestjs/common";
+import { Body,ClassSerializerInterceptor,Controller ,Delete,Get,NotFoundException,Param,Patch,Post, Query, UseInterceptors} from "@nestjs/common";
 import { CreateuserDto } from "./dtos/create.user.dto";
 import { UsersService } from "./users.service";
 import { UpadteUserDto } from "./dtos/update-user.dto";
+import { Serialize, SerializeInterceptor } from "src/interceptors/serialize.interceptor";
+// insted of importing serializeInterceptor just import serialize 
+import { UserDto } from "./dtos/user.dto";
 
-@Controller('auth')
-export class userController{
+    @Serialize(UserDto)  
+    @Controller('auth')
+    export class userController{
     constructor (private service:UsersService){}
 
     @Post('/signup')
@@ -14,14 +18,30 @@ export class userController{
         return "user added sucessfully"
     }
 
+    // @UseInterceptors(new SerializeInterceptor(UserDto))  //to write this even easier we call fucntion from interceptor
+    //@Serialize(UserDto)   //we can also use this at the top of contoller so all the routes will be intercepted by the class 
     @Get('/:id')
-    finduser(@Param('id') id:string){
-       return this.service.findOne(parseInt(id))
+    async finduser(@Param('id') id:string){
+
+       const user= await this.service.findOne(parseInt(id));
+       if(!user){
+        throw new NotFoundException('user not found');
+       }
+       return user;
+    }
+    // @UseInterceptors(ClassSerializerInterceptor)
+    // @UseInterceptors(SerializeInterceptor)
+    //@Serialize(UserDto)
+    @Get()
+    findAllUsersByEmail(@Query('email') email:string){
+        console.log('handler is running')
+        return this.service.find(email);
     }
 
-    @Get()
-    findAllUsers(@Query('email') email:string){
-        return this.service.find(email);
+    //@Serialize(UserDto)
+    @Get('/user/all')
+    findAllUsers(){
+        return this.service.findAll()
     }
 
     @Delete('/:id')
