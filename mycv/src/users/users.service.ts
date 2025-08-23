@@ -14,10 +14,14 @@ export class UsersService {
     return this.usersRepository.find();  //return array or empty array
   }
 
-   findOne(id: number): Promise<user | null> {
-    return this.usersRepository.findOneBy({id });  //finds the value or return null
-   
+  async findOne(id: number): Promise<user | null> {
+  if (!id) {
+    return null;
   }
+    return await this.usersRepository.findOneBy({ id });
+
+}
+
   
   find(email:string):Promise<user|null>{
     return this.usersRepository.findOneBy({email})
